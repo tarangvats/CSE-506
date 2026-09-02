@@ -97,14 +97,14 @@
 
 ## Exokernel: App-level Memory Management
 * Kernel exposes:
-    * Physical pages and VA -> PA MMU mappings
+    * Physical pages and VA -> PA MMU mappings (directly to user based application)
 * Syscalls (app -> kernel)
-    1. pa= AllocPage()
-    2. TLBWrite (va,pa, permissions)
+    1. pa= AllocPage() ->(application can get physical page)
+    2. TLBWrite (va,pa, permissions) -> application can update TLB directly
     3. Grant (env,pa): allow another process to acces pa
-    4. DeAllocPage (pa)
+    4. DeAllocPage (pa) -> application can delete physical page directly
 * Upcalls (kernel -> app)
-    * PageFault (va,info)
+    * PageFault (va,info) -> hey application tehre is a page fault at this address.
 
 # Exokernel: App-level Memory Management
 * What if we run out of physical pages?
@@ -119,13 +119,13 @@
 
 ## Exokernel : App-level Memory Management
 * Kernel keeps track of:
-  * who owns
+  * who owns (for e.g-> the particular page)
   * wo has access to it
   * which mappings it uses
 * Q: Can a kernel do less than this?
 
 ## Usecase
-* A database manages in-memory page caches
+* A database manages in-memory page caches 
 
 ## Exokernel: App-level CPU Management
 
@@ -133,7 +133,7 @@
 * Syscalls (app->kernel)
   * Yield() gives up CPU
 * Upcalls (kernel -> app)
-  * PleaseYield()
+  * PleaseYield() (application is using cpu alot please yield)
   * Resume()
 * Appdecides how to yield/resume
   * OnPleaseYield, app saves registers
