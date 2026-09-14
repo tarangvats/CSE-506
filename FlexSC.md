@@ -4,7 +4,7 @@
     * A kernel mechanism for exporting a kernel space routines to user space applications
     * No context sitching overhead
     * e.g, gettimeofday()
-        * the kernel allows the page cotaining the current time to be mapped read-only into user space
+         * the kernel allows the page cotaining the current time to be mapped read-only into user space
 Instead of making system call we are just reading from vdso
 
 Example C Code:
