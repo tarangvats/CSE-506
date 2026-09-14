@@ -58,3 +58,30 @@ _start:
    mov $60, %rax   # syscall id: exit
    xor %rdi, %rdi  # 1st arg: 0
    syscall         # switch from user space to kernel space
+
+
+# Hanlding the syscall interupt
+* The kernel syscall interupt jandler,, system call handler
+    * entry_SYSCALL_64 invokes the entry function for the syscall ID
+         * call do_syscall_64
+
+# Transition: kernel spcae -> user spcae
+
+
+# sys_gettimeofday
+
+/* linux/kernel/time/time.c */
+
+
+
+SYSCALL_DEFINE2(gettimeofday,struct timeval __user *, tv, struct timezone __user *,tz) /* __user: user-space address */
+{
+   if(likely(tv!=NULL
+
+
+
+
+      
+
+
+
